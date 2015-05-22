@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MapBox Trial</title>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
+  <link rel="stylesheet" href="style.css">
+
+<script type="text/javascript">
+  window.onload = function() {
+    L.mapbox.accessToken = 'pk.eyJ1IjoibWFzdGVyZnVuZyIsImEiOiIzZWU3NzVmNmE2ZGY0YjZkNzRjM2YzOWViN2ZjZjhkOCJ9.jFsm55X2H78DwB7boOz0rQ';
+    window.map = L.mapbox.map('map', null, { minZoom: 8});
+
+    var layers = {
+      street: L.mapbox.tileLayer("masterfung.4e74168c"),
+      terrain: L.mapbox.tileLayer("masterfung.m8finakd")
+    };
+
+    L.control.scale().addTo(map);
+
+    layers.map.addTo(map);
+    L.control.layers(layers).addTo(map);
+
+    map.setView([37.7833, -122.4167], 12)
+
+  }
+</script>
+</head>
+<body>
+  <div id='map'></div>
+
+</body>
+</html>
