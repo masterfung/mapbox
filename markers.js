@@ -12,8 +12,15 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "ABBOTT NEIGHBORHOOD PARK",
-                "address": "1300  SPRUCE ST"
+                "title": "First",
+                "description": "The first flight point",
+                "icon": {
+                  "iconUrl": "images/drone.png",
+                  "iconSize": [50, 50], // size of the icon
+                  "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+                  "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+                  "className": "dot"
+              }
             }
         },
         {
@@ -26,8 +33,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "DOUBLE OAKS CENTER",
-                "address": "1326 WOODWARD AV"
+                "title": "DOUBLE OAKS CENTER",
+                "description": "1326 WOODWARD AV"
             }
         },
         {
@@ -41,8 +48,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "DOUBLE OAKS NEIGHBORHOOD PARK",
-                "address": "2605  DOUBLE OAKS RD"
+                "title": "DOUBLE OAKS NEIGHBORHOOD PARK",
+                "description": "2605  DOUBLE OAKS RD"
             }
         },
         {
@@ -56,8 +63,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "DOUBLE OAKS POOL",
-                "address": "1200 NEWLAND RD"
+                "title": "DOUBLE OAKS POOL",
+                "description": "1200 NEWLAND RD"
             }
         },
         {
@@ -71,8 +78,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "DAVID B. WAYMER FLYING REGIONAL PARK",
-                "address": "15401 HOLBROOKS RD"
+                "title": "DAVID B. WAYMER FLYING REGIONAL PARK",
+                "description": "15401 HOLBROOKS RD"
             }
         },
         {
@@ -85,8 +92,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -99,8 +106,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -113,8 +120,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -127,8 +134,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -141,8 +148,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -155,8 +162,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -169,8 +176,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -183,8 +190,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -197,8 +204,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -211,8 +218,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -225,8 +232,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -239,8 +246,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -253,8 +260,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -267,8 +274,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -281,8 +288,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -295,8 +302,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -309,8 +316,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -323,8 +330,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -337,8 +344,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -351,8 +358,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -365,8 +372,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -379,8 +386,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -393,8 +400,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -407,8 +414,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -421,8 +428,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -435,8 +442,8 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         },
         {
@@ -449,9 +456,9 @@ window.markers = {
                 ]
             },
             "properties": {
-                "name": "",
-                "address": ""
+                "title": "",
+                "description": ""
             }
         }
     ]
-g
+}

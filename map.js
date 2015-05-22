@@ -14,12 +14,29 @@ var setupMap = function setupMap() {
 
   map.attributionControl.addAttribution('Tsung Hung | 2015');
 
-  map.setView([37.7833, -122.4167], 12);
+  map.setView([37.77906506406423, -122.39044204830788], 16);
 };
 
 window.onload = function() {
   setupMap();
 
-  var layer = L.mapbox.featureLayer(markers).addTo(map);
+  var droneIcon = {
+    "iconUrl": "images/drone.png",
+    "iconSize": [50, 50], // size of the icon
+    "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+    "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+    "className": "dot"
+  }
+
+  var myLayer = L.mapbox.featureLayer().addTo(map);
+
+  myLayer.on('layeradd', function (e) {
+    var marker = e.layer,
+        feature = marker.feature;
+
+    marker.setIcon(L.icon(droneIcon));
+  });
+
+  myLayer.setGeoJSON(markers);
 
 };
