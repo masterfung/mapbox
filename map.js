@@ -1,4 +1,4 @@
-window.onload = function() {
+var setupMap = function setupMap() {
   L.mapbox.accessToken = 'pk.eyJ1IjoibWFzdGVyZnVuZyIsImEiOiIzZWU3NzVmNmE2ZGY0YjZkNzRjM2YzOWViN2ZjZjhkOCJ9.jFsm55X2H78DwB7boOz0rQ';
   window.map = L.mapbox.map('map', null, { minZoom: 8});
 
@@ -15,5 +15,11 @@ window.onload = function() {
   map.attributionControl.addAttribution('Tsung Hung | 2015');
 
   map.setView([37.7833, -122.4167], 12);
+};
+
+window.onload = function() {
+  setupMap();
+
+  var layer = L.mapbox.featureLayer(markers).addTo(map);
 
 };
