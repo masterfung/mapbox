@@ -1,18 +1,34 @@
 var Hapi = require('hapi');
-var server = new Hapi.Server()
+var path = require('path');
+var payload = require('./payload');
+var server = new Hapi.Server();
 
 server.connection({
   host: "localhost",
   port: 3000
+});
+
+server.views({
+  engines: {
+    html: require('handlebars')
+  },
+  path: path.join(__dirname, 'public'),
+  helpersPath: path.join(__dirname, 'helpers')
 })
 
 server.route({
-  path: '/',
+  path: '/{param*}',
   method: 'GET',
-  handler: function(req, res) {
-    res('Hello World!')
+  handler: {
+    directory: {
+      path: "./public",
+      listing: true,
+      index: true
+    }
   }
 })
+
+console.log(payload.length);
 
 server.register({
   register: require('good'),
