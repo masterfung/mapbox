@@ -3,6 +3,11 @@ var path = require('path');
 var payload = require('./payload');
 var server = new Hapi.Server();
 
+var stop = false;
+var pause = false;
+var start = true;
+var coordinateCounter = 0;
+
 server.connection({
   host: "localhost",
   port: 3000
@@ -17,18 +22,30 @@ server.views({
 })
 
 server.route({
+  path: '/console/moo',
+  method: 'GET',
+  handler: function (request, reply, next) {
+    reply("ok");
+  }
+})
+
+server.route({
   path: '/{param*}',
   method: 'GET',
   handler: {
     directory: {
       path: "./public",
-      listing: true,
+      // listing: true,
       index: true
     }
   }
 })
 
-console.log(payload.length);
+payload().then(function (output) {
+  output.forEach(function(x) {
+    console.log(x);
+  });
+});
 
 server.register({
   register: require('good'),
@@ -43,6 +60,8 @@ server.register({
   if (err) {
     throw err;
   }
+
+
 
   // Starting the server
 
