@@ -5,8 +5,20 @@ var server = new Hapi.Server();
 
 var stop = false;
 var pause = false;
-var start = true;
+var start = false;
 var coordinateCounter = 0;
+
+var coordinateRetriever = function(index) {
+  return new Promise(function(resolve, reject) {
+    payload().then(function(output) {
+      resolve(output[index]);
+    });
+  });
+};
+
+// coordinateRetriever(0).then(function(results) {
+//   console.log("moo", results);
+// });
 
 server.connection({
   host: "localhost",
@@ -19,15 +31,7 @@ server.views({
   },
   path: path.join(__dirname, 'public'),
   helpersPath: path.join(__dirname, 'helpers')
-})
-
-server.route({
-  path: '/console/moo',
-  method: 'GET',
-  handler: function (request, reply, next) {
-    reply("ok");
-  }
-})
+});
 
 server.route({
   path: '/{param*}',
@@ -35,11 +39,34 @@ server.route({
   handler: {
     directory: {
       path: "./public",
-      // listing: true,
       index: true
     }
   }
-})
+});
+
+server.route({
+  path: "/data/coordinate-fetch",
+  method: "GET",
+  config: {
+    handler: function(req, res) {
+      // res(JSON.stringify([37.77906506406423, -122.39044204830788]))
+      if (stop === false && pause === false && start === false) {
+        coordinateRetriever(coordinateCounter).then(function(result) {
+          res(JSON.stringify(result));
+        });
+        coordinateCounter++;
+      }
+    }
+  }
+});
+
+server.route({
+    method: '*',
+    path: '/{p*}', // catch-all path
+    handler: function (request, reply) {
+        reply.file('./public/notfound/404.html').code(404);
+    }
+});
 
 payload().then(function (output) {
   output.forEach(function(x) {
@@ -47,15 +74,17 @@ payload().then(function (output) {
   });
 });
 
-server.register({
-  register: require('good'),
-  options: {
-    reporters: [{
-      reporter: require('good-console'),
-      events:{ response: '*' }
-    }]
+server.register([
+  {
+    register: require('good'),
+    options: {
+      reporters: [{
+        reporter: require('good-console'),
+        events:{ response: '*' }
+      }]
+    }
   }
-}, function (err) {
+], function (err) {
 
   if (err) {
     throw err;
