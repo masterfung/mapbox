@@ -17,8 +17,10 @@ var setupMap = function setupMap() {
   map.setView([37.77906506406423, -122.39044204830788], 16);
 };
 
+
 window.onload = function() {
   setupMap();
+  var visited = [];
 
   var droneIcon = {
     "iconUrl": "../images/drone.png",
@@ -28,26 +30,77 @@ window.onload = function() {
     "className": "dot"
   }
 
-  var myLayer = L.mapbox.featureLayer().addTo(map);
-
-  myLayer.on('layeradd', function (e) {
-    var marker = e.layer,
-        feature = marker.feature;
-
-    marker.setIcon(L.icon(droneIcon));
-  });
-
-  myLayer.setGeoJSON(markers);
-
-  // var marker = L.marker(markers.features[0].geometry.coordinates, {
-  //   title: markers.features[0].properties.description
+  // var myLayer = L.mapbox.featureLayer().addTo(map);
+  //
+  // myLayer.on('layeradd', function (e) {
+  //   var marker = e.layer,
+  //       feature = marker.feature;
+  //
+  //   marker.setIcon(L.icon(droneIcon));
   // });
   //
-  // marker.addTo(map);
+  // myLayer.setGeoJSON(markers.features[0].geometry.coordinates);
 
-  // window.watchID = navigator.geolocation.watchPosition(onSuccess, onError, {
-  //   maximumAge: 0,
-  //   timeout: 60000,
-  //   enableHighAccuracy: true
-  // })
+  // var marker = L.marker([37.77906506406423,-122.39044204830788], {
+  //   icon: L.icon(droneIcon)
+  // }).addTo(map);
+
+  var state = "not started";
+
+  $("#btn-start").click(function() {
+      $.get("/data/start", function(data) {
+        console.log("Ack:", data);
+        state = data;
+
+        var fetchCoordinate = function() {
+          $.get("/data/coordinate-fetch", function(coordinates, status) {
+
+            if (state !== "started") {
+              return;
+            }
+
+            // Continue polling
+            setTimeout(fetchCoordinate, 2000);
+
+            if (status === 'error') {
+              console.log("Retrieval of coordianated in-error: " + status);
+            }
+
+            var marker = L.marker(JSON.parse(coordinates), {
+              icon: L.icon(droneIcon)
+            });
+
+            visited.push(marker);
+
+            marker.addTo(map);
+
+          });
+        };
+
+        fetchCoordinate();
+    });
+  });
+
+  $("#btn-pause").click(function() {
+    $.get("/data/pause", function(data, status) {
+      console.log("Ack:", data);
+      state = data;
+    })
+  });
+
+  $("#btn-restart").click(function() {
+    $.get("/data/restart", function(data, status) {
+      console.log("Ack:", data);
+      state = data;
+
+      // Start
+      $("#btn-start").click();
+
+      // Clear map
+      for (var i = 0; i < visited.length; i++) {
+        map.removeLayer(visited[i]);
+      }
+    })
+  });
+
 };
