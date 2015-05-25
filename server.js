@@ -3,22 +3,30 @@ var path = require('path');
 var payload = require('./payload');
 var server = new Hapi.Server();
 
-var stop = false;
-var pause = false;
-var start = false;
+var state = "not started";
 var coordinateCounter = 0;
+var counter = null;
 
 var coordinateRetriever = function(index) {
   return new Promise(function(resolve, reject) {
     payload().then(function(output) {
+      console.log(index, output[index], output)
       resolve(output[index]);
     });
   });
 };
 
-// coordinateRetriever(0).then(function(results) {
-//   console.log("moo", results);
-// });
+var startCoordinateCounter = function () {
+  var next = function () {
+    if (state === "started") {
+      coordinateCounter++;
+    } else {
+      clearInterval(counter);
+    }
+  }
+  clearInterval(counter);
+  counter = setInterval(next, 2000);
+}
 
 server.connection({
   host: "localhost",
@@ -44,21 +52,72 @@ server.route({
   }
 });
 
+
+// No side effects
 server.route({
   path: "/data/coordinate-fetch",
   method: "GET",
   config: {
     handler: function(req, res) {
-      // res(JSON.stringify([37.77906506406423, -122.39044204830788]))
-      if (stop === false && pause === false && start === false) {
-        coordinateRetriever(coordinateCounter).then(function(result) {
-          res(JSON.stringify(result));
-        });
-        coordinateCounter++;
-      }
+      coordinateRetriever(coordinateCounter).then(function(result) {
+        res(JSON.stringify(result));
+      });
     }
   }
 });
+
+
+// Side effect: state = start
+server.route({
+  path: "/data/start",
+  method: "GET",
+  config: {
+    handler: function(req, res) {
+
+      // Guard clause
+      if (state === "started") {
+        return;
+      }
+
+      state = "started";
+      startCoordinateCounter();
+      res(state);
+    }
+  }
+});
+
+
+// Side effect: state = paused
+server.route({
+  path: "/data/pause",
+  method: "GET",
+  config: {
+    handler: function(req, res) {
+
+      // Guard clause
+      if (state !== "started") {
+        return;
+      }
+
+      state = "paused";
+      res(state);
+    }
+  }
+});
+
+
+server.route({
+  path: "/data/restart",
+  method: "GET",
+  config: {
+    handler: function(req, res) {
+      coordinateCounter = 0;
+      state = "not started";
+      res(state);
+    }
+  }
+});
+
 
 server.route({
     method: '*',
@@ -66,12 +125,6 @@ server.route({
     handler: function (request, reply) {
         reply.file('./public/notfound/404.html').code(404);
     }
-});
-
-payload().then(function (output) {
-  output.forEach(function(x) {
-    console.log(x);
-  });
 });
 
 server.register([
