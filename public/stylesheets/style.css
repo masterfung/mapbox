@@ -1,2 +1,7 @@
 body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
+
+#map { position:absolute; top:0; bottom:0; width:80%; border-right: 1px solid #c0c0c0; }
+
+#sidebar { position: absolute; top: 0; right: 0; width: 19%; border-right: 1px solid #c0c0c0; font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 10px; margin-left: 0; padding: 3px; }
+
+#sidebar p { padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #c0c0c0; }
