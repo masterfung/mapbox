@@ -73,7 +73,6 @@ server.route({
   method: "GET",
   config: {
     handler: function(req, res) {
-
       // Guard clause
       if (state === "started") {
         return;
