@@ -30,26 +30,13 @@ window.onload = function() {
     "className": "dot"
   }
 
-  // var myLayer = L.mapbox.featureLayer().addTo(map);
-  //
-  // myLayer.on('layeradd', function (e) {
-  //   var marker = e.layer,
-  //       feature = marker.feature;
-  //
-  //   marker.setIcon(L.icon(droneIcon));
-  // });
-  //
-  // myLayer.setGeoJSON(markers.features[0].geometry.coordinates);
-
-  // var marker = L.marker([37.77906506406423,-122.39044204830788], {
-  //   icon: L.icon(droneIcon)
-  // }).addTo(map);
-
+  // client state
   var state = "not started";
 
+  // start button
   $("#btn-start").click(function() {
       $.get("/data/start", function(data) {
-        console.log("Ack:", data);
+        console.log("State status:", data);
         state = data;
 
         var fetchCoordinate = function() {
@@ -65,7 +52,7 @@ window.onload = function() {
             if (status === 'error') {
               console.log("Retrieval of coordianated in-error: " + status);
             }
-
+            // parse the coordinates coming in and uses the drone icon
             var marker = L.marker(JSON.parse(coordinates), {
               icon: L.icon(droneIcon)
             });
@@ -81,6 +68,7 @@ window.onload = function() {
     });
   });
 
+  // pause button
   $("#btn-pause").click(function() {
     $.get("/data/pause", function(data, status) {
       console.log("Ack:", data);
@@ -88,6 +76,7 @@ window.onload = function() {
     })
   });
 
+  // restart button
   $("#btn-restart").click(function() {
     $.get("/data/restart", function(data, status) {
       console.log("Ack:", data);
