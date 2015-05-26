@@ -18,7 +18,18 @@ npm install
 nodemon server.js
 ```
 
-Navigate to `localhost:3000` and experiment with the feature.
+Navigate to `localhost:3000` and experiment with the feature. For best experience, make sure you are launching a new web browser tab with a width of at least 1400px. This will insure the buttons are all one line.
+
+Start button: Start will initiate the process and will the client will request new point every 2 seconds (ajax polling) from the server via GET method.
+
+Pause button: Pause will pause at any state of the drone flight path. Whenever pause button is clicked, user can click on start again to resume the drone flight. Pause will not work unless drone is flying.
+
+Restart button: Terminates all existing process and reinitialize the flight from the first provided coordinate (given by the server).
+
+##State
+There are only two states within this application, start and pause. Restart is basically a start but with the ability to clear the map and restart on the first coordinate.
+
+The server and the client manages the state. Future applicational improvements could include using socket.io on the frontend. This will no longer need state management on the frontend. Implementing socket.io on the frontend will be helpful for larger applications.
 
 ##Test
 Using HapiJS Lab for my tests.
