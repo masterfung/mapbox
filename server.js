@@ -1,12 +1,16 @@
+// load modules
 var Hapi = require('hapi');
 var path = require('path');
 var payload = require('./payload');
 var server = module.exports = new Hapi.Server();
 
+// state management
 var state = "not started";
 var coordinateCounter = 0;
 var counter = null;
 
+
+// Uses Promise to resolve coordinates based on index
 var coordinateRetriever = function(index) {
   return new Promise(function(resolve, reject) {
     payload().then(function(output) {
@@ -16,6 +20,7 @@ var coordinateRetriever = function(index) {
   });
 };
 
+// helper function routes handling and state
 var startCoordinateCounter = function () {
   var next = function () {
     if (state === "started") {
@@ -28,11 +33,13 @@ var startCoordinateCounter = function () {
   counter = setInterval(next, 2000);
 }
 
+// server connection after running, port 3000
 server.connection({
   host: "localhost",
   port: 3000
 });
 
+// declaration of file path and html rendering engines
 server.views({
   engines: {
     html: require('handlebars')
@@ -41,6 +48,7 @@ server.views({
   helpersPath: path.join(__dirname, 'helpers')
 });
 
+// basic home route
 server.route({
   path: '/{param*}',
   method: 'GET',
@@ -104,7 +112,7 @@ server.route({
   }
 });
 
-
+// Side Effect: state = not started
 server.route({
   path: "/data/restart",
   method: "GET",
@@ -117,15 +125,7 @@ server.route({
   }
 });
 
-
-server.route({
-    method: '*',
-    path: '/{p*}', // catch-all path
-    handler: function (request, reply) {
-        reply.file('./public/notfound/404.html').code(404);
-    }
-});
-
+// register plugins to bring about better console details (logging)
 server.register([
   {
     register: require('good'),
@@ -144,7 +144,6 @@ server.register([
 
 
   // Starting the server
-
   server.start(function(err) {
     if (err) {
       console.log("Something went wrong: "+ err);
