@@ -4,7 +4,7 @@
   "description": "Drone path through Mapbox",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -t 100"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,10 @@
     "handlebars": "^3.0.3",
     "hapi": "^8.5.1",
     "lodash": "^3.9.1"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "lab": "^5.9.0",
+    "shot": "^1.5.0"
   }
 }
