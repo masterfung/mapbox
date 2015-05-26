@@ -3,7 +3,7 @@ var Hapi = require('hapi');
 var Lab = require('lab');
 var path = require('path');
 var shot = require('shot');
-var server = require('../server.js');
+var server = require('../server');
 
 // Declare internals
 
@@ -69,16 +69,16 @@ describe('payload', function () {
     var firstOutput;
     var first = 0;
 
-    var coordinateRetriever = function(index) {
-      return new Promise(function(resolve, reject) {
-        payload().then(function(output) {
-          console.log(index, output[index])
-          resolve(output[index]);
-        });
-      });
-    };
+    // var coordinateRetriever = function(index) {
+    //   return new Promise(function(resolve, reject) {
+    //     payload().then(function(output) {
+    //       console.log(index, output[index])
+    //       resolve(output[index]);
+    //     });
+    //   });
+    // };
 
-    firstOutput = coordinateRetriever(first).then(function(result) {
+    firstOutput = server.coordinateRetriever(first).then(function(result) {
       result;
     });
 

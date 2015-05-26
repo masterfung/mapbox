@@ -22,9 +22,9 @@ Navigate to `localhost:3000` and experiment with the feature.
 
 ##Test
 Using HapiJS Lab for my tests.
-NOTE: Running `npm test` will start running the test but please be aware that because coverage is not 100%, node will indicate that Test has failed.
+NOTE: Running `npm test` will start running the test but please be aware that because coverage is not 100%, node will indicate that Test has failed. Please do not worry! Everything is alright! :)
 
-To generate coverage.html, run `lab -r html -o coverage.html`
+To generate a new coverage.html, run `lab -r html -o coverage.html` or just open up the file to view what has been tested and what is coming.
 
 ##Feedback
 Feedback are awesome. If you have any suggestions, improvements, issues, or questions, please either pull request or shoot me an email at thung at me dot com

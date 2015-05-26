@@ -1,7 +1,7 @@
 var Hapi = require('hapi');
 var path = require('path');
 var payload = require('./payload');
-var server = new Hapi.Server();
+var server = module.exports = new Hapi.Server();
 
 var state = "not started";
 var coordinateCounter = 0;
@@ -141,7 +141,6 @@ server.register([
   if (err) {
     throw err;
   }
-
 
 
   // Starting the server
