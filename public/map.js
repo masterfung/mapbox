@@ -86,9 +86,9 @@ window.onload = function() {
       $("#btn-start").click();
 
       // Clear map
-      for (var i = 0; i < visited.length; i++) {
-        map.removeLayer(visited[i]);
-      }
+      visited.forEach(function(marker) {
+        map.removeLayer(marker);
+      })
     })
   });
 
