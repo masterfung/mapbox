@@ -44,8 +44,8 @@ server.views({
   engines: {
     html: require('handlebars')
   },
-  path: path.join(__dirname, 'public'),
-  helpersPath: path.join(__dirname, 'helpers')
+  path: path.join(__dirname, 'public')
+  // helpersPath: path.join(__dirname, 'helpers')
 });
 
 // basic home route
