@@ -4,7 +4,8 @@
   "description": "Drone path through Mapbox",
   "main": "index.html",
   "scripts": {
-    "test": "lab -t 100"
+    "test": "lab -t 100",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
