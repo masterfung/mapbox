@@ -47,6 +47,13 @@ server.views({
   path: path.join(__dirname, 'public')
 });
 
+// setting header to allow any cookies, not
+// safe for production but fine for localhost
+server.state('session', {
+  strictHeader: false
+
+});
+
 // basic home route
 server.route({
   path: '/{param*}',
