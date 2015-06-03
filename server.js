@@ -11,10 +11,10 @@ var counter = null;
 
 
 // Uses Promise to resolve coordinates based on index
-var coordinateRetriever = function(index) {
+ var coordinateRetriever = function(index) {
   return new Promise(function(resolve, reject) {
     payload().then(function(output) {
-      console.log(index, output[index], output)
+      console.log(index, output[index], output);
       resolve(output[index]);
     });
   });
@@ -28,10 +28,10 @@ var startCoordinateCounter = function () {
     } else {
       clearInterval(counter);
     }
-  }
+  };
   clearInterval(counter);
   counter = setInterval(next, 2000);
-}
+};
 
 // server connection after running, port 3000
 server.connection({
@@ -45,7 +45,6 @@ server.views({
     html: require('handlebars')
   },
   path: path.join(__dirname, 'public')
-  // helpersPath: path.join(__dirname, 'helpers')
 });
 
 // basic home route

@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var filePath = path.join(__dirname, "data/raw/waypoints.txt")
+var filePath = path.join(__dirname, "data/raw/waypoints.txt");
 
 var state = null;
 

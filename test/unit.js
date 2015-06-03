@@ -72,7 +72,7 @@ describe('payload', function () {
     var coordinateRetriever = function(index) {
       return new Promise(function(resolve, reject) {
         payload().then(function(output) {
-          console.log(index, output[index])
+          console.log(index, output[index]);
           resolve(output[index]);
         });
       });
