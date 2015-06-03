@@ -15,7 +15,7 @@ Run these command:
 git clone https://github.com/masterfung/mapbox
 cd mapbox
 npm install
-nodemon server.js
+npm start
 ```
 
 Navigate to `localhost:3000` and experiment with the feature. For best experience, make sure you are launching a new web browser tab with a width of at least 1400px. This will insure the buttons are all one line.
