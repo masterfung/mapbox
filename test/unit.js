@@ -69,16 +69,16 @@ describe('payload', function () {
     var firstOutput;
     var first = 0;
 
-    // var coordinateRetriever = function(index) {
-    //   return new Promise(function(resolve, reject) {
-    //     payload().then(function(output) {
-    //       console.log(index, output[index])
-    //       resolve(output[index]);
-    //     });
-    //   });
-    // };
+    var coordinateRetriever = function(index) {
+      return new Promise(function(resolve, reject) {
+        payload().then(function(output) {
+          console.log(index, output[index])
+          resolve(output[index]);
+        });
+      });
+    };
 
-    firstOutput = server.coordinateRetriever(first).then(function(result) {
+    firstOutput = coordinateRetriever(first).then(function(result) {
       result;
     });
 
